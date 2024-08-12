@@ -12,6 +12,7 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToogleColorMode';
+import { useNavigate } from 'react-router-dom';
 
 const logoStyle = {
   width: '140px',
@@ -21,6 +22,7 @@ const logoStyle = {
 
 function AppAppBar({ mode, toggleColorMode }) {
   const [open, setOpen] = React.useState(false);
+  const navigate = useNavigate();  
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -39,6 +41,11 @@ function AppAppBar({ mode, toggleColorMode }) {
       setOpen(false);
     }
   };
+
+  const handleHome = ()=>{
+    console.log('here')
+    navigate('/')
+  }
 
   return (
     <div>
@@ -74,6 +81,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                   : '0 0 1px rgba(2, 31, 59, 0.7), 1px 1.5px 2px -1px rgba(2, 31, 59, 0.65), 4px 4px 12px -2.5px rgba(2, 31, 59, 0.65)',
             })}
           >
+            
             <Box
               sx={{
                 flexGrow: 1,
@@ -89,6 +97,7 @@ function AppAppBar({ mode, toggleColorMode }) {
                 }
                 style={logoStyle}
                 alt="logo of sitemark"
+                onClick={()=>{handleHome()}}
               />
               <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
                 <MenuItem

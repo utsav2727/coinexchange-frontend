@@ -36,13 +36,13 @@ export default function Hero() {
             variant="h1"
             sx={{
               display: 'flex',
-              flexDirection: { xs: 'column', md: 'row' },
+              flexDirection: { xs: 'column', md: 'column' },
               alignSelf: 'center',
               textAlign: 'center',
               fontSize: 'clamp(3.5rem, 10vw, 4rem)',
             }}
           >
-            Our latest&nbsp;
+            Exchange your&nbsp;
             <Typography
               component="span"
               variant="h1"
@@ -52,7 +52,7 @@ export default function Hero() {
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
-              products
+              Cryptocurrencies
             </Typography>
           </Typography>
           <Typography
@@ -60,9 +60,7 @@ export default function Hero() {
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            Explore our cutting-edge dashboard, delivering high-quality solutions
-            tailored to your needs. Elevate your experience with top-tier features
-            and services.
+            LocalCoins is a p2p crypto exchange marketplace where people can trade crypto directly with each other.
           </Typography>
           <Stack
             direction={{ xs: 'column', sm: 'row' }}
