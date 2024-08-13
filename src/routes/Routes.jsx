@@ -13,7 +13,7 @@ const RoutePage = () => {
       <>
           <Routes>
           <Route path="/" element={<LandingPage />} />
-          <Route path="/login" element={<SignIn />} />
+          <Route path="/signin" element={<SignIn />} />
           <Route path="*" element={<ErrorPage />} />
         </Routes>
       </>
