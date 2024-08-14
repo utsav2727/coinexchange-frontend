@@ -16,25 +16,25 @@ import ViewQuiltRoundedIcon from '@mui/icons-material/ViewQuiltRounded';
 const items = [
   {
     icon: <ViewQuiltRoundedIcon />,
-    title: 'Dashboard',
+    title: 'Cryptocurrency Exchange',
     description:
-      'This item could provide a snapshot of the most important metrics or data points related to the product.',
+      'A trusted and secure platform for buying, selling, and trading digital currencies. Whether you are new to crypto or an experienced trader, our platform offers seamless transactions, cutting-edge security, and an intuitive interface to support your journey in the digital currency market.',
     imageLight: 'url("/static/images/templates/templates-images/dash-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/dash-dark.png")',
   },
   {
     icon: <EdgesensorHighRoundedIcon />,
-    title: 'Mobile integration',
+    title: 'Secure Trading',
     description:
-      'This item could provide information about the mobile app version of the product.',
+      'Conduct secure peer-to-peer transactions with cutting-edge encryption and advanced authentication protocols, ensuring the utmost safety for your trades.',
     imageLight: 'url("/static/images/templates/templates-images/mobile-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/mobile-dark.png")',
   },
   {
     icon: <DevicesRoundedIcon />,
-    title: 'Available on all platforms',
+    title: 'Referral Program',
     description:
-      'This item could let users know the product is available on all platforms, such as web, mobile, and desktop.',
+      'Earn rewards by inviting others to join our platform. Share the benefits of secure trading with your network and get rewarded for every new participant you refer.',
     imageLight: 'url("/static/images/templates/templates-images/devices-light.png")',
     imageDark: 'url("/static/images/templates/templates-images/devices-dark.png")',
   },
@@ -131,7 +131,7 @@ export default function Features() {
                   '&:hover > svg': { transform: 'translateX(2px)' },
                 }}
               >
-                <span>Learn more</span>
+                {/* <span>Learn more</span> */}
                 <ChevronRightRoundedIcon
                   fontSize="small"
                   sx={{ mt: '1px', ml: '2px' }}
@@ -211,7 +211,7 @@ export default function Features() {
                     >
                       {description}
                     </Typography>
-                    <Link
+                    {/* <Link
                       color="primary"
                       variant="body2"
                       fontWeight="bold"
@@ -230,7 +230,7 @@ export default function Features() {
                         fontSize="small"
                         sx={{ mt: '1px', ml: '2px' }}
                       />
-                    </Link>
+                    </Link> */}
                   </Box>
                 </Box>
               </Card>

@@ -15,39 +15,39 @@ import ThumbUpAltRoundedIcon from '@mui/icons-material/ThumbUpAltRounded';
 const items = [
   {
     icon: <SettingsSuggestRoundedIcon />,
-    title: 'Adaptable performance',
+    title: 'High Performance',
     description:
-      'Our product effortlessly adjusts to your needs, boosting efficiency and simplifying your tasks.',
+      'Our exchange platform is optimized for high-speed transactions, ensuring you never miss an opportunity.',
   },
   {
     icon: <ConstructionRoundedIcon />,
-    title: 'Built to last',
+    title: 'Security and Stability',
     description:
-      'Experience unmatched durability that goes above and beyond with lasting investment.',
+      'Built with top-tier security protocols, our platform offers unmatched stability and protection for your assets.',
   },
   {
     icon: <ThumbUpAltRoundedIcon />,
-    title: 'Great user experience',
+    title: 'User-Friendly Interface',
     description:
-      'Integrate our product into your routine with an intuitive and easy-to-use interface.',
+      'Navigate the market with ease using our intuitive design, tailored for both beginners and experienced traders.',
   },
   {
     icon: <AutoFixHighRoundedIcon />,
-    title: 'Innovative functionality',
+    title: 'Cutting-Edge Technology',
     description:
-      'Stay ahead with features that set new standards, addressing your evolving needs better than the rest.',
+      'Stay ahead of the curve with our innovative features and advanced trading tools, designed to enhance your experience.',
   },
   {
     icon: <SupportAgentRoundedIcon />,
-    title: 'Reliable support',
+    title: '24/7 Customer Support',
     description:
-      'Count on our responsive customer support, offering assistance that goes beyond the purchase.',
+      'Our dedicated support team is available around the clock to assist you with any questions or issues.',
   },
   {
     icon: <QueryStatsRoundedIcon />,
-    title: 'Precision in every detail',
+    title: 'Real-Time Analytics',
     description:
-      'Enjoy a meticulously crafted product where small touches make a significant impact on your overall experience.',
+      'Make informed decisions with access to real-time data and detailed market analysis.',
   },
 ];
 
@@ -78,12 +78,10 @@ export default function Highlights() {
           }}
         >
           <Typography component="h2" variant="h4">
-            Highlights
+            Why Choose Us
           </Typography>
           <Typography variant="body1" sx={{ color: 'grey.400' }}>
-            Explore why our product stands out: adaptability, durability,
-            user-friendly design, and innovation. Enjoy reliable customer support and
-            precision in every detail.
+            Discover what makes our cryptocurrency exchange stand out: unparalleled performance, cutting-edge security, user-centric design, and continuous support. Elevate your trading experience with our real-time analytics and innovative technology.
           </Typography>
         </Box>
         <Grid container spacing={2.5}>
