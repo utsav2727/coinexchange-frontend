@@ -6,6 +6,7 @@ import AppAppBar from './components/AppAppBar';
 import { useState } from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import RoutePage from './routes/Routes';
+import ReactDOM from 'react-dom/client';
 
 function App() {
   const [mode, setMode] = useState('light');

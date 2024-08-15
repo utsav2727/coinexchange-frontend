@@ -11,65 +11,65 @@ import { useTheme } from '@mui/system';
 
 const userTestimonials = [
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />,
-    name: 'Remy Sharp',
-    occupation: 'Senior Engineer',
+    avatar: <Avatar alt="Alice Johnson" src="/static/images/avatar/1.jpg" />,
+    name: 'Alice Johnson',
+    occupation: 'Crypto Investor',
     testimonial:
-      "I absolutely love how versatile this product is! Whether I'm tackling work projects or indulging in my favorite hobbies, it seamlessly adapts to my changing needs. Its intuitive design has truly enhanced my daily routine, making tasks more efficient and enjoyable.",
+      "The security features on this platform are top-notch. I've never felt more confident in trading and storing my assets. The user interface is intuitive, making it easy to manage my portfolio and execute trades efficiently.",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/2.jpg" />,
-    name: 'Travis Howard',
-    occupation: 'Lead Product Designer',
+    avatar: <Avatar alt="Michael Lee" src="/static/images/avatar/2.jpg" />,
+    name: 'Michael Lee',
+    occupation: 'Blockchain Developer',
     testimonial:
-      "One of the standout features of this product is the exceptional customer support. In my experience, the team behind this product has been quick to respond and incredibly helpful. It's reassuring to know that they stand firmly behind their product.",
+      "As a developer, I appreciate the seamless integration of advanced tools on this exchange. The real-time data and customizable charts have significantly enhanced my trading strategies.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/3.jpg" />,
-    name: 'Cindy Baker',
-    occupation: 'CTO',
+    avatar: <Avatar alt="Sara Kim" src="/static/images/avatar/3.jpg" />,
+    name: 'Sara Kim',
+    occupation: 'Financial Analyst',
     testimonial:
-      'The level of simplicity and user-friendliness in this product has significantly simplified my life. I appreciate the creators for delivering a solution that not only meets but exceeds user expectations.',
+      "This platform offers some of the best rates and lowest fees I've encountered. The customer support is responsive and knowledgeable, which makes a huge difference when dealing with financial transactions.",
   },
   {
-    avatar: <Avatar alt="Remy Sharp" src="/static/images/avatar/4.jpg" />,
-    name: 'Julia Stewart',
-    occupation: 'Senior Engineer',
+    avatar: <Avatar alt="John Doe" src="/static/images/avatar/4.jpg" />,
+    name: 'John Doe',
+    occupation: 'Entrepreneur',
     testimonial:
-      "I appreciate the attention to detail in the design of this product. The small touches make a big difference, and it's evident that the creators focused on delivering a premium experience.",
+      "I value the transparency and reliability of this exchange. The detailed analytics and reports have been invaluable for tracking my investments and making informed decisions.",
   },
   {
-    avatar: <Avatar alt="Travis Howard" src="/static/images/avatar/5.jpg" />,
-    name: 'John Smith',
-    occupation: 'Product Designer',
+    avatar: <Avatar alt="Emma Brown" src="/static/images/avatar/5.jpg" />,
+    name: 'Emma Brown',
+    occupation: 'Day Trader',
     testimonial:
-      "I've tried other similar products, but this one stands out for its innovative features. It's clear that the makers put a lot of thought into creating a solution that truly addresses user needs.",
+      "The speed and efficiency of transactions on this platform are unparalleled. I can execute trades quickly without worrying about delays or slippage, which is crucial for day trading.",
   },
   {
-    avatar: <Avatar alt="Cindy Baker" src="/static/images/avatar/6.jpg" />,
-    name: 'Daniel Wolf',
-    occupation: 'CDO',
+    avatar: <Avatar alt="David Smith" src="/static/images/avatar/6.jpg" />,
+    name: 'David Smith',
+    occupation: 'Crypto Enthusiast',
     testimonial:
-      "The quality of this product exceeded my expectations. It's durable, well-designed, and built to last. Definitely worth the investment!",
+      "This exchange offers a wide variety of cryptocurrencies, allowing me to diversify my portfolio easily. The mobile app is also fantastic for trading on the go.",
   },
 ];
 
 const whiteLogos = [
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628e8573c43893fe0ace_Sydney-white.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d520d0517ae8e8ddf13_Bern-white.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f46794c159024c1af6d44_Montreal-white.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e891fa22f89efd7477a_TerraLight.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560a09d1f6337b1dfed14ab_colorado-white.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5caa77bf7d69fb78792e_Ankara-white.svg',
+  'https://example.com/white-logo1.svg',
+  'https://example.com/white-logo2.svg',
+  'https://example.com/white-logo3.svg',
+  'https://example.com/white-logo4.svg',
+  'https://example.com/white-logo5.svg',
+  'https://example.com/white-logo6.svg',
 ];
 
 const darkLogos = [
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560628889c3bdf1129952dc_Sydney-black.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f4d4d8b829a89976a419c_Bern-black.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f467502f091ccb929529d_Montreal-black.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e911fa22f2203d7514c_TerraDark.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/6560a0990f3717787fd49245_colorado-black.svg',
-  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/655f5ca4e548b0deb1041c33_Ankara-black.svg',
+  'https://example.com/dark-logo1.svg',
+  'https://example.com/dark-logo2.svg',
+  'https://example.com/dark-logo3.svg',
+  'https://example.com/dark-logo4.svg',
+  'https://example.com/dark-logo5.svg',
+  'https://example.com/dark-logo6.svg',
 ];
 
 const logoStyle = {
@@ -101,12 +101,10 @@ export default function Testimonials() {
         }}
       >
         <Typography component="h2" variant="h4" color="text.primary">
-          Testimonials
+          What Our Users Say
         </Typography>
         <Typography variant="body1" color="text.secondary">
-          See what our customers love about our products. Discover how we excel in
-          efficiency, durability, and satisfaction. Join us for quality, innovation,
-          and reliable support.
+          Discover why our users trust us with their crypto trading. From robust security to exceptional user experience, here's what they have to say.
         </Typography>
       </Box>
       <Grid container spacing={2}>
@@ -139,11 +137,11 @@ export default function Testimonials() {
                   title={testimonial.name}
                   subheader={testimonial.occupation}
                 />
-                <img
+                {/* <img
                   src={logos[index]}
                   alt={`Logo ${index + 1}`}
                   style={logoStyle}
-                />
+                /> */}
               </Box>
             </Card>
           </Grid>

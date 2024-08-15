@@ -14,6 +14,7 @@ import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToogleColorMode';
 import { useNavigate } from 'react-router-dom';
 
+
 const logoStyle = {
   width: '140px',
   height: 'auto',
@@ -155,8 +156,9 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="text"
                 size="small"
                 component="a"
-                href="/material-ui/getting-started/templates/sign-in/"
+                // href="/signin"
                 target="_blank"
+                onClick={() => {navigate("/signin")}}
               >
                 Sign in
               </Button>
@@ -165,8 +167,9 @@ function AppAppBar({ mode, toggleColorMode }) {
                 variant="contained"
                 size="small"
                 component="a"
-                href="/material-ui/getting-started/templates/sign-up/"
+                // href="/signup"
                 target="_blank"
+                onClick={() => navigate("/signup")}
               >
                 Sign up
               </Button>
@@ -219,9 +222,10 @@ function AppAppBar({ mode, toggleColorMode }) {
                       color="primary"
                       variant="contained"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-up/"
-                      target="_blank"
+                      // href="/signup"
+                      // target="_blank"
                       sx={{ width: '100%' }}
+                      onClick={() => navigate("/signup")}
                     >
                       Sign up
                     </Button>
@@ -231,9 +235,10 @@ function AppAppBar({ mode, toggleColorMode }) {
                       color="primary"
                       variant="outlined"
                       component="a"
-                      href="/material-ui/getting-started/templates/sign-in/"
-                      target="_blank"
+                      // href="/signin"
+                      // target="_blank"
                       sx={{ width: '100%' }}
+                      onClick={() => navigate("/signin")}
                     >
                       Sign in
                     </Button>
