@@ -8,15 +8,16 @@ import LandingPage from '../pages/LandingPage';
 import SignIn from '../pages/SigninPage';
 import ErrorPage from "../pages/ErrorPage";
 import SignUp from "../pages/SignupPage";
+import Auth from "../helper/Auth";
 
 const RoutePage = () => {
   return (
       <>
           <Routes>
            <Route path="/" element={<LandingPage />} />
-           <Route path="/signin" element={<SignIn />} />
+           <Route path="/signin" element={<Auth><SignIn /></Auth>} />
            <Route path="*" element={<ErrorPage />} />
-           <Route path="/signup" element={<SignUp />} />
+           <Route path="/signup" element={<Auth><SignUp /></Auth>} />
           </Routes>
       </>
   );
