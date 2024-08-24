@@ -52,7 +52,7 @@ export default function Hero() {
                   theme.palette.mode === 'light' ? 'primary.main' : 'primary.light',
               }}
             >
-              Cryptocurrencies
+              Currencies
             </Typography>
           </Typography>
           <Typography

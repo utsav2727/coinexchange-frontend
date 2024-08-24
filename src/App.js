@@ -17,21 +17,35 @@ import { verifyToken } from './services/verifyToken';
 function App() {
   const [mode, setMode] = useState('light');
   const LPtheme = createTheme(getLPTheme(mode));
-  const [userData, setUserData] = useState({isLoggedIn:false, userData:{}})
+  const [isLoggedin, setIsLoggedin] = useState(false);
+  const [userData, setUserData] = useState({});
+
 
   const toggleColorMode = () => {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
+  const setLoggedIn = ()=>{
+
+  }
+
+
+  const setLoggedOut = ()=>{
+
+    setIsLoggedin(false);
+    setUserData({})
+
+  }
 
   useEffect(()=>{
     async function fetchUser(){
       let response = await verifyToken();
       if(response){
-        setUserData({
-          isLoggedIn:true,
-          userData:response.user
-        })
+        setIsLoggedin(true);
+        setUserData(response.user);
+      }else{
+        setIsLoggedin(false);
+        setUserData({});
       }
     }
     fetchUser();
@@ -41,7 +55,7 @@ function App() {
   return (
     <ThemeProvider theme={LPtheme}>
       <CssBaseline />
-      <UserContext.Provider value={userData}>
+      <UserContext.Provider value={{isLoggedIn:isLoggedin, userData: userData, setLoggedIn:setIsLoggedin, setLoggedOut:setLoggedOut}}>
         <BrowserRouter>
           <ToastContainer
             position="top-right"

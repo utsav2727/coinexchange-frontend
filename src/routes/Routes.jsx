@@ -9,6 +9,8 @@ import SignIn from '../pages/SigninPage';
 import ErrorPage from "../pages/ErrorPage";
 import SignUp from "../pages/SignupPage";
 import Auth from "../helper/Auth";
+import ProfilePage from "../pages/ProfilePage";
+import AuthRequire from "../helper/AuthRequire";
 
 const RoutePage = () => {
   return (
@@ -18,6 +20,7 @@ const RoutePage = () => {
            <Route path="/signin" element={<Auth><SignIn /></Auth>} />
            <Route path="*" element={<ErrorPage />} />
            <Route path="/signup" element={<Auth><SignUp /></Auth>} />
+           <Route path="profile" element={<AuthRequire><ProfilePage/></AuthRequire>}/>
           </Routes>
       </>
   );

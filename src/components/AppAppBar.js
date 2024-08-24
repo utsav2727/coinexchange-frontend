@@ -39,10 +39,7 @@ function AppAppBar({ mode, toggleColorMode }) {
   const userMenu = Boolean(anchorEl);
   const id = userMenu ? 'simple-popover' : undefined;
 
-
   const user = useContext(UserContext);
-
-  console.log('user', user);
 
   const toggleDrawer = (newOpen) => () => {
     setOpen(newOpen);
@@ -66,9 +63,14 @@ function AppAppBar({ mode, toggleColorMode }) {
     window.location.href='/'
   };
 
+  const handleNavigate = (page)=>{
+    if(page==='profile'){
+      navigate('/profile')
+    }
+    
+  }
 
   const butOptions = ['BTC', 'BCH','BNB','DOG','ETH','LTC','XMR','LUNA','USDT']
-
 
   return (
     <div>
@@ -96,9 +98,24 @@ function AppAppBar({ mode, toggleColorMode }) {
           }}
         >
           <List
-            sx={{ width: '100%', marginTop: 1, maxWidth: 360, borderRadius: 10 }}
+            sx={{ width: '100%', marginTop: 1, backgroundColor:'primary.light' , maxWidth: 360, p:1, borderRadius:2}}
             component="nav"
           >
+            <ListItemButton onClick={(e) => { handleNavigate('profile') }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+              <ListItemText primary="Profile" />
+            </ListItemButton>
+            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+              <ListItemText primary="Deposits" />
+            </ListItemButton>
+            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+              <ListItemText primary="Transactions" />
+            </ListItemButton>
+            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+              <ListItemText primary="Withdrawals" />
+            </ListItemButton>
+            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+              <ListItemText primary="Support Tickets" />
+            </ListItemButton>
             <ListItemButton onClick={(e) => { logout() }} sx={{ borderRadius: 5, backgroundColor: 'grey[100]', color: "text.secondary" }}>
               <ListItemText primary="Logout" />
             </ListItemButton>
