@@ -15,7 +15,7 @@ import ToggleColorMode from './ToogleColorMode';
 import { useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
-import { Avatar, List, ListItemButton, ListItemIcon, ListItemText, ListSubheader, Popover, Popper, Stack } from '@mui/material';
+import { Avatar, List, ListItemButton, ListItemText, Popper, Stack } from '@mui/material';
 import { logout } from '../services/logout';
 import AppBarOptions from './AppBarOptions';
 
@@ -248,6 +248,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               {user.isLoggedIn ?
                 <Stack direction='row' gap={2} alignItems={'center'}>
                   <Typography variant='body1' color='Highlight'>Hello {user.userData.userName}!</Typography>
+                  <Button variant='outlined' onClick={()=>{navigate("/wallet")}}>Wallet</Button>
                   <Avatar aria-describedby={id} onClick={(e) => { handleClick(e) }} sx={{ bgcolor: 'text.primary' }}>{user.userData.userName.slice(0, 1)}</Avatar>
                 </Stack> :
                 null}
