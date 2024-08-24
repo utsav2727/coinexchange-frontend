@@ -80,10 +80,6 @@ function ProfilePage() {
                 <Typography>Username</Typography>
                 <Typography variant="body2">{userData?.username}</Typography>
               </Grid>
-              {/* <Grid item>
-                <Typography>Security</Typography>
-                <Button color="error" size="small" variant="outlined">Less Secure</Button>
-              </Grid> */}
               <Grid item>
                 <Typography>Last Update</Typography>
                 <Typography variant="body2">{userData?.updatedAt}</Typography>

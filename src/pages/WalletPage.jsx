@@ -13,15 +13,16 @@ import { fetchProfileData } from '../services/fetchProfileData';
 import { useState } from 'react';
 import Dashboard from '../components/profile/Dashboard';
 import AccountSetting from '../components/profile/AccountSetting';
-import Referrals from '../components/profile/Referrals';
-import Advertisements from '../components/profile/Advertisements';
+import AddCardIcon from '@mui/icons-material/AddCard';
+import ManualDeposit from '../components/wallet/ManualDeposit';
+import DepositHistory from '../components/wallet/DepositHistory';
 
 function WalletPage() {
 
   const [userData, setUserData] = useState({});
   const [reload, setReload] = useState(false);
 
-  const [currentTab, setCurrentTab] = useState('dashboard');
+  const [currentTab, setCurrentTab] = useState('manual');
 
 
   const user = useContext(UserContext);
@@ -39,27 +40,19 @@ function WalletPage() {
     setReload(!reload);
   }
 
-  const getComponent = ()=>{
-    if(currentTab==='dashboard'){
-      return <Dashboard/>
-    }else if(currentTab === 'accountsetting'){
-      return <AccountSetting reloadFn={reloadFn} reload={reload} userData={userData}/>
-    }else if(currentTab === 'referral'){
-      return <Referrals/>
-    }else if(currentTab === 'advertisements'){
-      return <Advertisements/>
+  const getComponent = (userData)=>{
+    if(currentTab==='manual'){
+      return <ManualDeposit reloadFn={reloadFn} reload={reload} userData={userData}/>
+    }else if(currentTab === 'depositHistory'){
+      return <DepositHistory reloadFn={reloadFn} reload={reload} userData={userData}/>
     }
   };
 
   const getComponentName = ()=>{
-    if(currentTab==='dashboard'){
-      return 'Dashboard'
+    if(currentTab==='manual'){
+      return 'Manual Deposit'
     }else if(currentTab === 'accountsetting'){
       return 'Account Settings'
-    }else if(currentTab === 'referral'){
-      return 'Referrals'
-    }else if(currentTab === 'advertisements'){
-      return 'Advertisements'
     }
   }
 
@@ -97,10 +90,27 @@ function WalletPage() {
       </Box>
 
       <Box sx={{width:'100%', display:'flex', flexDirection:'column'}}>
-
-        <Typography variant='h5' sx={{my:2}}> Total Balance :</Typography>
-
+        <Typography variant='h5' sx={{my:2}}> Total Balance : 1000 $</Typography>
       </Box>
+      <Grid container spacing={3}>
+        <Grid item xs={12} md={3}>
+          <Paper elevation={3}>
+            <List>
+              <ListItem button selected={currentTab==='manual'} onClick={()=>{setCurrentTab('manual')}}>
+                <ListItemIcon><AddCardIcon /></ListItemIcon>
+                <ListItemText primary="Manual Deposit" />
+              </ListItem>
+              <ListItem button selected={currentTab==='depositHistory'} onClick={()=>{setCurrentTab('depositHistory')}}>
+                <ListItemIcon><Person /></ListItemIcon>
+                <ListItemText primary="Deposit History" />
+              </ListItem>
+            </List>
+          </Paper>
+        </Grid>
+        <Grid item xs={12} md={9}>
+            {getComponent(userData)}
+        </Grid>
+      </Grid>
 
         </Grid>
     </Container>
