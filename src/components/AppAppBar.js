@@ -12,12 +12,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Drawer from '@mui/material/Drawer';
 import MenuIcon from '@mui/icons-material/Menu';
 import ToggleColorMode from './ToogleColorMode';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import { Avatar, List, ListItemButton, ListItemText, Popper, Stack } from '@mui/material';
 import { logout } from '../services/logout';
 import AppBarOptions from './AppBarOptions';
+import { useState } from 'react';
+import { useEffect } from 'react';
+import axiosInstance from '../services/axiosInstance';
 
 
 const logoStyle = {
@@ -31,6 +34,11 @@ function AppAppBar({ mode, toggleColorMode }) {
   const navigate = useNavigate();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
+
+  const {pathname} = useLocation();
+
+  // console.log('locations', location);
+
 
   const handleClick = (event) => {
     setAnchorEl(anchorEl ? null : event.currentTarget);
@@ -66,11 +74,30 @@ function AppAppBar({ mode, toggleColorMode }) {
   const handleNavigate = (page)=>{
     if(page==='profile'){
       navigate('/profile')
+    }else if(page==='deposit'){
+      window.location.href = '/wallet?type=depositHistory';
+    }else if(page==='withdraw'){
+      window.location.href = '/wallet?type=withdrawHistory';
     }
-    
   }
 
-  const butOptions = ['BTC', 'BCH','BNB','DOG','ETH','LTC','XMR','LUNA','USDT']
+  // const butOptions = ['BTC', 'BCH','BNB','DOG','ETH','LTC','XMR','LUNA','USDT']
+
+
+  const [buyOptions, setOptions]= useState([]);
+
+  useEffect(()=>{
+    async function fetchCurrency(){
+        let data = await axiosInstance.get('/currency');
+        console.log('data', data.data);
+        let options = data.data.map((item)=>{
+          return {tag: item.tag, symbol:item.symbol};
+        });
+        setOptions(options);
+    }
+    fetchCurrency()
+  },[])
+
 
   return (
     <div>
@@ -104,13 +131,13 @@ function AppAppBar({ mode, toggleColorMode }) {
             <ListItemButton onClick={(e) => { handleNavigate('profile') }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
               <ListItemText primary="Profile" />
             </ListItemButton>
-            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+            <ListItemButton onClick={(e) => { handleNavigate('deposit') }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
               <ListItemText primary="Deposits" />
             </ListItemButton>
             <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
               <ListItemText primary="Transactions" />
             </ListItemButton>
-            <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
+            <ListItemButton onClick={(e) => { handleNavigate('withdraw') }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
               <ListItemText primary="Withdrawals" />
             </ListItemButton>
             <ListItemButton onClick={(e) => { }} sx={{ borderRadius: 5, bgcolor:'secondary' ,color: "text.secondary" }}>
@@ -171,46 +198,65 @@ function AppAppBar({ mode, toggleColorMode }) {
                     Home
                   </Typography>
                 </MenuItem>
-                <AppBarOptions name={'Buy'} options={butOptions}/>
-                <AppBarOptions name={'Sell'} options={butOptions}/>
                 <MenuItem
+                  onClick={() => {window.location.href = '/trade?req=buy'}}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="primary">
+                    Buy
+                  </Typography>
+                </MenuItem>
+                <MenuItem
+                  onClick={() => {window.location.href='/trade?req=sell'}}
+                  sx={{ py: '6px', px: '12px', color:'primary' }}
+                >
+                  <Typography variant="body2" color="primary">
+                    Sell
+                  </Typography>
+                </MenuItem>
+
+                
+
+
+                
+                {pathname=="/" && <MenuItem
                   onClick={() => scrollToSection('testimonials')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Testimonials
                   </Typography>
-                </MenuItem>
-                <MenuItem
+                </MenuItem>}
+                {pathname=="/" && <MenuItem
                   onClick={() => scrollToSection('highlights')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Highlights
                   </Typography>
-                </MenuItem>
-                {/* <MenuItem
-                  onClick={() => scrollToSection('pricing')}
-                  sx={{ py: '6px', px: '12px' }}
-                >
-                  <Typography variant="body2" color="text.primary">
-                    Pricing
-                  </Typography>
-                </MenuItem> */}
-                <MenuItem
+                </MenuItem>}
+                {pathname=="/" && <MenuItem
                   onClick={() => scrollToSection('faq')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     FAQ
                   </Typography>
-                </MenuItem>
-                <MenuItem
+                </MenuItem>}
+                {pathname=="/" && <MenuItem
                   onClick={() => scrollToSection('testimonials')}
                   sx={{ py: '6px', px: '12px' }}
                 >
                   <Typography variant="body2" color="text.primary">
                     Contact
+                  </Typography>
+                </MenuItem>}
+                <MenuItem
+                  onClick={() => window.location.href='/mytrades'}
+                  sx={{ py: '6px', px: '12px' }}
+                >
+                  <Typography variant="body2" color="text.primary">
+                    Trades
                   </Typography>
                 </MenuItem>
               </Box>
@@ -247,7 +293,7 @@ function AppAppBar({ mode, toggleColorMode }) {
               </Button> : null}
               {user.isLoggedIn ?
                 <Stack direction='row' gap={2} alignItems={'center'}>
-                  <Typography variant='body1' color='Highlight'>Hello {user.userData.userName}!</Typography>
+                  <Typography variant='body1' color='primary'>Hello {user.userData.userName}!</Typography>
                   <Button variant='outlined' onClick={()=>{navigate("/wallet")}}>Wallet</Button>
                   <Avatar aria-describedby={id} onClick={(e) => { handleClick(e) }} sx={{ bgcolor: 'text.primary' }}>{user.userData.userName.slice(0, 1)}</Avatar>
                 </Stack> :
@@ -291,10 +337,10 @@ function AppAppBar({ mode, toggleColorMode }) {
                 null}
                   </MenuItem>
                   <MenuItem>
-                    <AppBarOptions name={'Buy'} options={butOptions}/>
+                    <AppBarOptions name={'Buy'} options={buyOptions}/>
                   </MenuItem>
                   <MenuItem>
-                    <AppBarOptions name={'Sell'} options={butOptions}/>
+                    <AppBarOptions name={'Sell'} options={buyOptions}/>
                   </MenuItem>
                   <MenuItem onClick={() => scrollToSection('features')}>
                     Features

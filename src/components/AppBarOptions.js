@@ -6,6 +6,7 @@ import MenuItem from '@mui/material/MenuItem';
 import EditIcon from '@mui/icons-material/Edit';
 import CurrencyBitcoinIcon from '@mui/icons-material/CurrencyBitcoin';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
+import { Typography } from '@mui/material';
 
 const StyledMenu = styled((props) => (
   <Menu
@@ -83,9 +84,8 @@ export default function AppBarOptions({name, options}) {
         onClose={handleClose}
       >
         {options.map((item)=>{
-            return (<MenuItem onClick={handleClose} disableRipple>
-                <CurrencyBitcoinIcon />
-                {item}
+            return (<MenuItem key={item.tag} onClick={handleClose} disableRipple>
+                <Typography color={"primary"} sx={{mr:1}}>{item.symbol}</Typography>{item.tag}
               </MenuItem>)
         })}
         

@@ -1,8 +1,9 @@
 import { Button, Grid, TextField, Typography,Paper } from '@mui/material'
 import React from 'react';
 import { manualDeposit } from '../../services/depositService';
+import { withdraw } from '../../services/withdrawService';
 
-const ManualDeposit = ({userData, reloadFn}) => {
+const Withdraw = ({userData, reloadFn}) => {
 
 
     console.log(userData);
@@ -16,24 +17,21 @@ const ManualDeposit = ({userData, reloadFn}) => {
           transactionRef: data.get('transactionRef'),
         };
 
-        await manualDeposit(body);
+        await withdraw(body);
         // reloadFn();
         console.log('body', body);
       };
   return (
     <div>
-      <Typography variant="h6" sx={{ mb: 1 }}>Manual Deposit</Typography>
+      <Typography variant="h6" sx={{ mb: 1 }}>Withdraw</Typography>
       <Grid container spacing={2}>
         <Grid item xs={12}>
         <Paper sx={{ p: 2, mb: 2 }}>
                 <Grid container alignItems="center" spacing={1}>
                     <Grid item xs>
                     <Typography variant="body2">
-                          Kindly please pay on below Address and submit the form with transaction Id.
+                          Kindly please enter your wallet address below. payment will be proccessed in 1 working day.
                     </Typography>
-                      <Typography variant="body2" >
-                            USDT Address: <b>12y382754935421321y1724y</b>
-                        </Typography>
                     </Grid>
                 </Grid>
             </Paper>
@@ -70,7 +68,7 @@ const ManualDeposit = ({userData, reloadFn}) => {
                 fullWidth
                 size="small"
                 id="transactionRef"
-                label="Transaction Id"
+                label="Wallet address"
                 name="transactionRef"
               />
             </Grid>
@@ -91,7 +89,7 @@ const ManualDeposit = ({userData, reloadFn}) => {
               type="submit"
               variant="contained"
               sx={{ mt: 3, mb: 2 }}>
-                Add
+                withdraw
               </Button>
             </Grid>
           </Grid>
@@ -101,4 +99,4 @@ const ManualDeposit = ({userData, reloadFn}) => {
   )
 }
 
-export default ManualDeposit
+export default Withdraw

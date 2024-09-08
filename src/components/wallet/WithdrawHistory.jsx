@@ -5,12 +5,13 @@ import CustomTable from '../CustomTable';
 import { useEffect } from 'react';
 import { depositHistory } from '../../services/depositService';
 import { useState } from 'react';
+import { withdrawHistory } from '../../services/withdrawService';
 
-const DepositHistory = () => {
+const WithdrawHistory = () => {
 
   const columns = [
     { field: '_id', headerName: 'ID' },
-    { field: 'transactionRef', headerName: 'Transaction Ref' },
+    { field: 'transactionRef', headerName: 'Wallet Address' },
     { field: 'currencyId', headerName: 'Currency' },
     { field: 'status', headerName: 'Status' },
     { field: 'amount', headerName: 'Amount' },
@@ -23,7 +24,7 @@ const DepositHistory = () => {
   useEffect(()=>{
 
     async function fetchData(){
-      let data = await depositHistory();
+      let data = await withdrawHistory();
       console.log('data', data);
       setRows(data);
     }
@@ -35,7 +36,7 @@ const DepositHistory = () => {
 
   return (
     <div>
-      <Typography variant="h6" sx={{ mb: 1 }}>Deposit History</Typography>
+      <Typography variant="h6" sx={{ mb: 1 }}>Withdraw History</Typography>
       <Grid container spacing={2}>
         <Grid item xs={12}>
           <CustomTable rows={rows} columns={columns}/>
@@ -45,4 +46,4 @@ const DepositHistory = () => {
   )
 }
 
-export default DepositHistory
+export default WithdrawHistory

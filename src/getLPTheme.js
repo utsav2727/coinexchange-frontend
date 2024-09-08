@@ -476,7 +476,7 @@ export default function getLPTheme(mode) {
         styleOverrides: {
           root: ({ theme }) => ({
             backgroundImage: 'none',
-            backgroundColor: gray[100],
+            backgroundColor: brand[50],
             ...(theme.palette.mode === 'dark' && {
               backgroundColor: alpha(gray[900], 0.6),
             }),

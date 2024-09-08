@@ -11,18 +11,35 @@ import { useContext } from 'react';
 import { UserContext } from '../context/userContext';
 import { fetchProfileData } from '../services/fetchProfileData';
 import { useState } from 'react';
-import Dashboard from '../components/profile/Dashboard';
-import AccountSetting from '../components/profile/AccountSetting';
+import CachedIcon from '@mui/icons-material/Cached';
 import AddCardIcon from '@mui/icons-material/AddCard';
 import ManualDeposit from '../components/wallet/ManualDeposit';
 import DepositHistory from '../components/wallet/DepositHistory';
+import { checkBalance } from '../services/walletService';
+import HistoryToggleOffIcon from '@mui/icons-material/HistoryToggleOff';
+import PriceCheckIcon from '@mui/icons-material/PriceCheck';
+import Withdraw from '../components/wallet/Withdraw';
+import WithdrawHistory from '../components/wallet/WithdrawHistory';
+import { useSearchParams } from "react-router-dom";
 
 function WalletPage() {
 
   const [userData, setUserData] = useState({});
   const [reload, setReload] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
 
-  const [currentTab, setCurrentTab] = useState('manual');
+  console.log('searchparams', searchParams);
+  let currentPage = searchParams.get("type");
+
+  console.log('currentPage', currentPage);
+
+  const [currentTab, setCurrentTab] = useState(currentPage || 'manual');
+
+  const [ balance, setBalance] = useState(0);
+
+  
+
+  
 
 
   const user = useContext(UserContext);
@@ -45,16 +62,21 @@ function WalletPage() {
       return <ManualDeposit reloadFn={reloadFn} reload={reload} userData={userData}/>
     }else if(currentTab === 'depositHistory'){
       return <DepositHistory reloadFn={reloadFn} reload={reload} userData={userData}/>
+    }else if(currentTab === 'withdraw'){
+      return <Withdraw reloadFn={reloadFn} reload={reload} userData={userData}/>
+    }else if(currentTab === 'withdrawHistory'){
+      return <WithdrawHistory reloadFn={reloadFn} reload={reload} userData={userData}/>
     }
   };
 
-  const getComponentName = ()=>{
-    if(currentTab==='manual'){
-      return 'Manual Deposit'
-    }else if(currentTab === 'accountsetting'){
-      return 'Account Settings'
+  useEffect(()=>{
+    async function fetchData(){
+      let response = await checkBalance();
+      console.log('response', response);
+      setBalance(response.balance)
     }
-  }
+    fetchData();
+  },[reload,currentPage])
 
 
   return (
@@ -89,8 +111,28 @@ function WalletPage() {
       <Typography variant="h4" sx={{ my: 2 }}>Wallet</Typography>
       </Box>
 
-      <Box sx={{width:'100%', display:'flex', flexDirection:'column'}}>
-        <Typography variant='h5' sx={{my:2}}> Total Balance : 1000 $</Typography>
+      <Box sx={{width:'100%', display:'flex', flexDirection:'row', alignItems:'center'}}>
+        <Typography variant='h5' sx={{my:2}}> Total Balance : {balance} $</Typography>
+        <IconButton onClick={()=>{
+          setReload(true)
+          setTimeout(() => setReload(false), 1000);
+          }} sx={{p:2, m:0}}>
+        <CachedIcon 
+        sx={{
+          m: 0,
+          color: 'primary',
+          animation: reload ? 'rotate 1s linear infinite' : 'none',
+          '@keyframes rotate': {
+            '0%': {
+              transform: 'rotate(0deg)',
+            },
+            '100%': {
+              transform: 'rotate(360deg)',
+            },
+          },
+        }}
+        color='primary'/>     
+        </IconButton>
       </Box>
       <Grid container spacing={3}>
         <Grid item xs={12} md={3}>
@@ -101,8 +143,16 @@ function WalletPage() {
                 <ListItemText primary="Manual Deposit" />
               </ListItem>
               <ListItem button selected={currentTab==='depositHistory'} onClick={()=>{setCurrentTab('depositHistory')}}>
-                <ListItemIcon><Person /></ListItemIcon>
+                <ListItemIcon><HistoryToggleOffIcon /></ListItemIcon>
                 <ListItemText primary="Deposit History" />
+              </ListItem>
+              <ListItem button selected={currentTab==='withdraw'} onClick={()=>{setCurrentTab('withdraw')}}>
+                <ListItemIcon><PriceCheckIcon /></ListItemIcon>
+                <ListItemText primary="Withdraw" />
+              </ListItem>
+              <ListItem button selected={currentTab==='withdrawHistory'} onClick={()=>{setCurrentTab('withdrawHistory')}}>
+                <ListItemIcon><HistoryToggleOffIcon /></ListItemIcon>
+                <ListItemText primary="Withdraw History" />
               </ListItem>
             </List>
           </Paper>

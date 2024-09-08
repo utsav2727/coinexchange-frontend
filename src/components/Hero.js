@@ -7,8 +7,21 @@ import Link from '@mui/material/Link';
 import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
+import { DataGrid } from '@mui/x-data-grid';
 
 export default function Hero() {
+
+
+  const columns = [
+    {field:"seller", headerName:"Seller", width:200},
+    {field:"rate", headerName:"Rate", width:150},
+    {field:"paymentwindow", headerName:"Payment Window", width:200},
+    {field:"amount", headerName:"Trade Amount", width:200},
+    {field:"tradespeed", headerName:"Average Trade Speed", width:250},
+    {field:"action", headerName:"Action"},
+  
+  ]
+
   return (
     <Box
       id="hero"
@@ -100,11 +113,11 @@ export default function Hero() {
             alignSelf: 'center',
             height: { xs: 200, sm: 700 },
             width: '100%',
-            backgroundImage:
-              theme.palette.mode === 'light'
-                ? 'url("/static/images/templates/templates-images/hero-light.png")'
-                : 'url("/static/images/templates/templates-images/hero-dark.png")',
-            backgroundSize: 'cover',
+            // backgroundImage:
+            //   theme.palette.mode === 'light'
+            //     ? 'url("/static/images/templates/templates-images/hero-light.png")'
+            //     : 'url("/static/images/templates/templates-images/hero-dark.png")',
+            // backgroundSize: 'cover',
             borderRadius: '10px',
             outline: '1px solid',
             outlineColor:
@@ -116,7 +129,21 @@ export default function Hero() {
                 ? `0 0 12px 8px ${alpha('#9CCCFC', 0.2)}`
                 : `0 0 24px 12px ${alpha('#033363', 0.2)}`,
           })}
-        />
+        >
+          <DataGrid
+        rows={[]}
+        columns={columns}
+        initialState={{
+          pagination: {
+            paginationModel: {
+              pageSize: 5,
+            },
+          },
+        }}
+        pageSizeOptions={[5]}
+        disableRowSelectionOnClick
+      />
+        </Box>
       </Container>
     </Box>
   );
