@@ -13,6 +13,15 @@ import { UserContext } from './context/userContext';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { verifyToken } from './services/verifyToken';
+import { registerServiceWorker, subscribeToPushNotifications } from './notifications';
+import { initializePushNotifications } from './Pushnotification';
+import { LoadingProvider } from './LoadingContext';
+import GlobalLoadingIndicator from './GlobalLoadingIndicator';
+import { useAxiosInterceptors } from './services/axiosInstance';
+import AxiosInterceptorProvider from './AxiosIntercepterProvider';
+
+// import { initializeApp } from 'firebase/app';
+// import { getMessaging, getToken, onMessage } from 'firebase/messaging';
 
 function App() {
   const [mode, setMode] = useState('light');
@@ -25,9 +34,32 @@ function App() {
     setMode((prevMode) => (prevMode === 'light' ? 'dark' : 'light'));
   };
 
-  const setLoggedIn = ()=>{
+  // useAxiosInterceptors(); 
 
-  }
+
+function requestPermission() {
+  console.log('Requesting permission...');
+  Notification.requestPermission().then((permission) => {
+    if (permission === 'granted') {
+      console.log('Notification permission granted.');
+      // getToken(messaging, { vapidKey: 'BFAADld1xChQ3kyQmiwrMHuB9jhWJHLJht8pz4UXCL2ql2mdK1AXvc97YtAnFfl4nJjIKcLqgF6XJk_Z_XPhftU' })
+      //   .then((currentToken) => {
+      //     if (currentToken) {
+      //       console.log('Token:', currentToken);
+      //       // Send the token to your server
+      //     } else {
+      //       console.log('No registration token available.');
+      //     }
+      //   })
+      //   .catch((err) => {
+      //     console.log('An error occurred while retrieving token. ', err);
+      //   });
+    } else {
+      console.log('Permission denied');
+    }
+  });
+}
+
 
 
   const setLoggedOut = ()=>{
@@ -51,14 +83,21 @@ function App() {
     fetchUser();
   },[])
 
+  useEffect(() => {
+    initializePushNotifications();
+}, []);
+
 
   return (
     <ThemeProvider theme={LPtheme}>
+      <LoadingProvider>
       <CssBaseline />
+      <AxiosInterceptorProvider>
+        <GlobalLoadingIndicator/>
       <UserContext.Provider value={{isLoggedIn:isLoggedin, userData: userData, setLoggedIn:setIsLoggedin, setLoggedOut:setLoggedOut}}>
         <BrowserRouter>
           <ToastContainer
-            position="top-right"
+            position="top-center"
             autoClose={5000}
             hideProgressBar={false}
             newestOnTop={false}
@@ -74,6 +113,8 @@ function App() {
           <RoutePage />
         </BrowserRouter>
       </UserContext.Provider>
+      </AxiosInterceptorProvider>
+      </LoadingProvider>
     </ThemeProvider>
   );
 }

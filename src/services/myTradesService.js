@@ -12,7 +12,8 @@ export const myTrades= async ()=>{
                 exchangeRate: item.tradeId.exchangeRate,
                 amount: item.tradeId.sourceAmount,
                 _id:item._id,
-                tradeId:item.tradeId._id
+                tradeId:item.tradeId._id,
+                status:item.status
             }
         })
 
@@ -35,11 +36,37 @@ export const mySellTrades= async ()=>{
                 exchangeRate: item.tradeId.exchangeRate,
                 amount: item.tradeId.sourceAmount,
                 _id:item._id,
-                tradeId:item.tradeId._id
+                tradeId:item.tradeId._id,
+                status:item.status
             }
         })
 
         return data
+    } catch (error) {
+        console.log('err', error)
+        toast.error(error.response.data.message)
+        return null
+    }
+}
+
+
+export const mypostedTrade= async ()=>{
+    try {
+        const response = await axiosInstance.get('/trades/mypostedTrade');
+        console.log('response', response);
+        
+        // const data = response.data.map((item)=>{
+        //     return {
+        //         buyer:item.buyer.username,
+        //         exchangeRate: item.tradeId.exchangeRate,
+        //         amount: item.tradeId.sourceAmount,
+        //         _id:item._id,
+        //         tradeId:item.tradeId._id,
+        //         status:item.status
+        //     }
+        // })
+
+        return response.data;
     } catch (error) {
         console.log('err', error)
         toast.error(error.response.data.message)

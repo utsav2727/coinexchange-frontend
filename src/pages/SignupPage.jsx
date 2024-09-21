@@ -42,8 +42,12 @@ export default function SignUp() {
     };
 
     console.log('body', body);
-    const response = await registerUser(body);
-    console.log('response', response);
+
+    /* eslint-disable */
+    OTPlessSignin.initiate({ channel: "EMAIL", email: "user@example.com" });
+
+    // const response = await registerUser(body);
+    // console.log('response', response);
   };
 
   return (

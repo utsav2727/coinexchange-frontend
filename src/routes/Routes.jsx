@@ -16,6 +16,9 @@ import TradePage from "../pages/TradePage";
 import TradeDetailPage from "../pages/TradeDetailsPage";
 import ChatWindow from "../pages/TradeChatPage";
 import MyTrades from "../pages/MyTrades";
+import Transactions from "../pages/Transactions";
+import KycVerify from "../pages/KYCPage";
+import SupportPage from "../pages/SupportPage";
 
 const RoutePage = () => {
   return (
@@ -32,6 +35,9 @@ const RoutePage = () => {
            <Route path="/trade-details/buy/:tradeId" element={<AuthRequire><TradeDetailPage/></AuthRequire>}/>
            <Route path="/tradeChat/:tradeId/:tradeItemId" element={<AuthRequire><ChatWindow/></AuthRequire>}/>
            <Route path="/mytrades" element={<AuthRequire><MyTrades/></AuthRequire>}/>
+           <Route path="/transactions" element={<AuthRequire><Transactions/></AuthRequire>}/>
+           <Route path="/kyc" element={<AuthRequire><KycVerify/></AuthRequire>}/>
+           <Route path="/support" element={<AuthRequire><SupportPage/></AuthRequire>}/>
           </Routes>
       </>
   );

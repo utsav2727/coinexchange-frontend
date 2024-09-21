@@ -28,6 +28,37 @@
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
     <title>Icon - Currency Exchange</title>
+    <script
+    id="otpless-sdk"
+    src="https://otpless.com/v3/headless.js"
+    data-appid="T0CN8PUY1ALXOFLNTP6D"
+  ></script>
+  <script>
+    const callback = (userinfo) => {
+      const emailMap = otplessUser.identities.find(
+        (item) => item.identityType === "EMAIL"
+      );
+  
+      const mobileMap = otplessUser.identities.find(
+        (item) => item.identityType === "MOBILE"
+      )?.identityValue;
+  
+      const token = otplessUser.token;
+  
+      const email = emailMap?.identityValue;
+  
+      const mobile = mobileMap?.identityValue;
+  
+      const name = emailMap?.name || mobileMap?.name;
+  
+      console.log(userinfo);
+  
+      // Implement your custom logic here.
+    };
+    // Initialize OTPLESS SDK with the defined callback.
+    const OTPlessSignin = new OTPless(callback);
+  </script>
+  
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
@@ -42,5 +73,6 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    
   </body>
 </html>

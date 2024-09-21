@@ -1,5 +1,5 @@
 import { toast } from "react-toastify";
-import axiosInstance from "./axiosInstance";
+import axiosInstance, { axiosInstanceUpload } from "./axiosInstance";
 
 export const chatMsgs= async (tradeId, tradeItemId)=>{
     try {
@@ -15,20 +15,22 @@ export const chatMsgs= async (tradeId, tradeItemId)=>{
 }
 
 
-export const createMsg= async (to, message, tradeLineItem)=>{
+export const createMsg = async (formData) => {
     try {
-        // http://localhost:6001/api/chat/fetch/66dc5bba934f178dfa242780/66dc69250b3acb8c9d3ec73c
-        const response = await axiosInstance.post(`/chat/createChat`, {
-            to:to,
-            message:message,
-            tradeLineItem: tradeLineItem
-        });
-        console.log('response', response);
-        return response.data
+      const response = await axiosInstance.post(`/chat/createChat`, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data',
+        },
+      });
+  
+      console.log('response', response);
+      return response.data;
     } catch (error) {
-        console.log('err', error)
-        toast.error(error.response.data.message)
-        return null
+      console.log('err', error);
+      toast.error(error.response?.data?.message || 'Error occurred');
+      return null;
     }
-}
+  };
+
+  
 

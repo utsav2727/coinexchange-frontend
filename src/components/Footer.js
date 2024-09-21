@@ -21,7 +21,7 @@ function Copyright() {
   return (
     <Typography variant="body2" color="text.secondary" mt={1}>
       {'Copyright © '}
-      <Link href="https://mui.com/">Sitemark&nbsp;</Link>
+      <Link href="/">{process.env.REACT_APP_NAME}</Link>
       {new Date().getFullYear()}
     </Typography>
   );
@@ -59,13 +59,13 @@ export default function Footer() {
             <Box sx={{ ml: '-15px' }}>
               <img
                 src={
-                  'https://assets-global.website-files.com/61ed56ae9da9fd7e0ef0a967/61f12e6faf73568658154dae_SitemarkDefault.svg'
+                  process.env.REACT_APP_LOGO
                 }
                 style={logoStyle}
                 alt="logo of sitemark"
               />
             </Box>
-            <Typography variant="body2" fontWeight={600} gutterBottom>
+            {/* <Typography variant="body2" fontWeight={600} gutterBottom>
               Newsletter
             </Typography>
             <Typography variant="body2" color="text.secondary" mb={2}>
@@ -88,7 +88,7 @@ export default function Footer() {
               <Button variant="contained" color="primary" sx={{ flexShrink: 0 }}>
                 Subscribe
               </Button>
-            </Stack>
+            </Stack> */}
           </Box>
         </Box>
         <Box

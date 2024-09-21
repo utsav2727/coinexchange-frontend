@@ -1,0 +1,46 @@
+/* Loading overlay with transparent background */
+.loading-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.2); /* Fully transparent background */
+  display: flex;
+  justify-content: center; /* Centers horizontally */
+  align-items: center;     /* Centers vertically */
+  z-index: 9999;           /* Make sure it's above other content */
+}
+
+/* Spinner styles */
+.spinner {
+  --spinner-size: 60px; /* Set spinner size using CSS variables */
+  --spinner-border: 6px; /* Border thickness */
+  --spinner-color: #3498db; /* Customizable spinner color */
+
+  width: var(--spinner-size);
+  height: var(--spinner-size);
+  border: var(--spinner-border) solid rgba(255, 255, 255, 0.2); /* Lighter spinner border */
+  border-top: var(--spinner-border) solid var(--spinner-color); /* Spinner color */
+  border-radius: 50%;
+  animation: spin 1s cubic-bezier(0.4, 0.0, 0.2, 1) infinite; /* Smoother animation */
+  will-change: transform; /* Performance optimization hint */
+}
+
+/* Visually hidden text for screen readers */
+.loading-overlay .sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}

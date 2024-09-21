@@ -45,10 +45,6 @@ const TradeDetailPage = () => {
             "seller":seller
           }
         await createChatBuyService(body);
-
-        // setTimeout(()=>{
-        //     window.location.href = `/tradeChat/${tradeId}`;
-        // }, 1000);
     };
 
 
@@ -77,7 +73,7 @@ const TradeDetailPage = () => {
                                 </ListItem>
                                 <Divider sx={{ mb: 2 }} />
                                 <ListItem>
-                                    <ListItemText sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} primary="Payment Method" secondary="Bank" />
+                                    <ListItemText sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }} primary="Payment Method" secondary={`${tradeData.prefferedpaymentType || 'Not Specified'}`} />
                                 </ListItem>
                                 <Divider sx={{ mb: 2 }} />
                                 <ListItem>

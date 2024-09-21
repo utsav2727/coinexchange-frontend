@@ -8,19 +8,38 @@ import Stack from '@mui/material/Stack';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { DataGrid } from '@mui/x-data-grid';
+import { alltrade } from '../services/tradeService';
+import { formatDate } from '../helper/DateUtils';
 
 export default function Hero() {
 
+  const [trade, setTrade] = React.useState([]);
 
   const columns = [
+    {field:"type", headerName:"Type", width:200},
     {field:"seller", headerName:"Seller", width:200},
-    {field:"rate", headerName:"Rate", width:150},
-    {field:"paymentwindow", headerName:"Payment Window", width:200},
-    {field:"amount", headerName:"Trade Amount", width:200},
-    {field:"tradespeed", headerName:"Average Trade Speed", width:250},
-    {field:"action", headerName:"Action"},
+    {field:"buyer", headerName:"Buyer", width:200},
+    {field:"sourceAmount", headerName:"Trade Amount", width:200},
+    {field:"exchangeRate", headerName:"Rate", width:150},
+    // {field:"paymentWindow", headerName:"Payment Window", width:200},
+    // {field:"tradespeed", headerName:"Average Trade Speed", width:250},
+    // {field:"action", headerName:"Action"},
+    {field:"createdAt", headerName:"Posted On",width:180,valueGetter: (params) => (new Date(params).toLocaleString())},
   
   ]
+
+
+  React.useEffect(()=>{
+
+    async function fetchData(){
+      const data = await alltrade();
+      
+      setTrade(data);
+    }
+
+    fetchData();
+
+  },[])
 
   return (
     <Box
@@ -73,9 +92,9 @@ export default function Hero() {
             color="text.secondary"
             sx={{ alignSelf: 'center', width: { sm: '100%', md: '80%' } }}
           >
-            LocalCoins is a p2p crypto exchange marketplace where people can trade crypto directly with each other.
+            Bitbroking is a p2p currency exchange marketplace where people can trade currency directly with each other.
           </Typography>
-          <Stack
+          {/* <Stack
             direction={{ xs: 'column', sm: 'row' }}
             alignSelf="center"
             spacing={1}
@@ -104,7 +123,7 @@ export default function Hero() {
               Terms & Conditions
             </Link>
             .
-          </Typography>
+          </Typography> */}
         </Stack>
         <Box
           id="image"
@@ -113,11 +132,6 @@ export default function Hero() {
             alignSelf: 'center',
             height: { xs: 200, sm: 700 },
             width: '100%',
-            // backgroundImage:
-            //   theme.palette.mode === 'light'
-            //     ? 'url("/static/images/templates/templates-images/hero-light.png")'
-            //     : 'url("/static/images/templates/templates-images/hero-dark.png")',
-            // backgroundSize: 'cover',
             borderRadius: '10px',
             outline: '1px solid',
             outlineColor:
@@ -131,12 +145,13 @@ export default function Hero() {
           })}
         >
           <DataGrid
-        rows={[]}
+        rows={trade}
         columns={columns}
+        getRowId={(row) => row._id}
         initialState={{
           pagination: {
             paginationModel: {
-              pageSize: 5,
+              pageSize: 11,
             },
           },
         }}
